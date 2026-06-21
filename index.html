@@ -94,9 +94,9 @@
     <input type="text" id="input" class="calc-display" placeholder="0" readonly>
 
     <div class="calc-grid">
-      <button class="btn-calc bg-ios-light-grey" onclick="clear()">AC</button>
-      <button class="btn-calc bg-ios-light-grey" onclick="deleteBtn()">X</button>
-      <button class="btn-calc bg-ios-light-grey" onclick="numberBtn('%')">%</button>
+      <button class="btn-calc bg-ios-light-grey" onclick="clearBtn('clear')">AC</button>
+      <button class="btn-calc bg-ios-light-grey" onclick="clearBtn('delete')">X</button>
+      <button class="btn-calc bg-ios-light-grey" onclick="numberBtn('/100')">%</button>
       <button class="btn-calc bg-ios-orange" onclick="numberBtn('/')">÷</button>
 
       <button class="btn-calc bg-ios-dark-grey" onclick="numberBtn(7)">7</button>
@@ -131,6 +131,16 @@
     const equalsBtn = () =>{
       input.value = eval(input.value);
     }
+
+    const clearBtn = (btns) =>{
+      let userInput = document.getElementById('input');
+      if (btns === 'clear') {
+        userInput.value = ''
+      }else if(btns === 'delete'){
+        userInput.value = userInput.value.slice(0, -1)
+      }
+        
+    } 
   </script>
 </body>
 </html>
