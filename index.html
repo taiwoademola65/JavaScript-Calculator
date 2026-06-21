@@ -4,33 +4,133 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculator</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    button:hover{
+      background-color: hsl(0, 0%, 40%);
+    }
+
+    .calculator-container {
+      width: 100%;
+      max-width: 360px;
+      padding: 10px;
+    }
+
+    .calc-display {
+      font-size: 2rem;
+      font-weight: 300;
+      color: #fff;
+      text-align: right;
+      border: none;
+      background: transparent;
+      width: 100%;
+      padding: 5px;
+      outline: none;
+      pointer-events: none; 
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    /* Button Styling */
+    .btn-calc {
+      border: none;
+      outline: none;
+      border-radius: 50%;
+      aspect-ratio: 1; 
+      font-size: 2.25rem;
+      font-weight: 400;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: filter 0.1s ease;
+    }
+
+    .btn-calc:active {
+      filter: brightness(130%);
+    }
+
+    /* iOS Color Archetypes */
+    .bg-ios-light-grey {
+      background-color: #a5a5a5;
+      color: #000;
+    }
+    
+    .bg-ios-dark-grey {
+      background-color: #333333;
+      color: #fff;
+    }
+
+    .bg-ios-orange {
+      background-color: #ff9f0a;
+      color: #fff;
+    }
+
+    .btn-zero {
+      grid-column: span 2;
+      border-radius: 50px;
+      aspect-ratio: auto;
+      justify-content: flex-start;
+      padding-left: 32px;
+    }
+  </style>
 </head>
-<body class="bg-dark">
-  <div class="container">
-    <input type="text" class="form-control-plaintext" placeholder="0">
-    <div id="keys">
-      <button>C</button>
-      <button>AC</button>
-      <button>%</button>
-      <button>/</button>
-      <button>7</button>
-      <button>8</button>
-      <button>9</button>
-      <button>*</button>
-      <button>4</button>
-      <button>5</button>
-      <button>6</button>
-      <button>-</button>
-      <button>1</button>
-      <button>2</button>
-      <button>3</button>
-      <button>+</button>
-      <button>0</button>
-      <button>.</button>
-      <button>=</button>
-      
+<body>
+
+  <div class="calculator-container">
+    <input type="text" id="input" class="calc-display" placeholder="0" readonly>
+
+    <div class="calc-grid">
+      <button class="btn-calc bg-ios-light-grey" onclick="clear()">AC</button>
+      <button class="btn-calc bg-ios-light-grey" onclick="deleteBtn()">X</button>
+      <button class="btn-calc bg-ios-light-grey" onclick="numberBtn('%')">%</button>
+      <button class="btn-calc bg-ios-orange" onclick="numberBtn('/')">÷</button>
+
+      <button class="btn-calc bg-ios-dark-grey" onclick="numberBtn(7)">7</button>
+      <button class="btn-calc bg-ios-dark-grey" onclick="numberBtn(8)">8</button>
+      <button class="btn-calc bg-ios-dark-grey" onclick="numberBtn(9)">9</button>
+      <button class="btn-calc bg-ios-orange" onclick="numberBtn('*')">×</button>
+
+      <button class="btn-calc bg-ios-dark-grey" onclick="numberBtn(4)">4</button>
+      <button class="btn-calc bg-ios-dark-grey" onclick="numberBtn(5)">5</button>
+      <button class="btn-calc bg-ios-dark-grey" onclick="numberBtn(6)">6</button>
+      <button class="btn-calc bg-ios-orange" onclick="numberBtn('-')">−</button>
+
+      <button class="btn-calc bg-ios-dark-grey" onclick="numberBtn(1)">1</button>
+      <button class="btn-calc bg-ios-dark-grey" onclick="numberBtn(2)">2</button>
+      <button class="btn-calc bg-ios-dark-grey" onclick="numberBtn(3)">3</button>
+      <button class="btn-calc bg-ios-orange" onclick="numberBtn('+')">+</button>
+
+      <button class="btn-calc bg-ios-dark-grey btn-zero" onclick="numberBtn(0)">0</button>
+      <button class="btn-calc bg-ios-dark-grey" onclick="numberBtn('.')">.</button>
+      <button class="btn-calc bg-ios-orange" onclick="equalsBtn()">=</button>
     </div>
   </div>
+
+
+
+  <script>
+    const numberBtn = (num) =>{
+      let userInput = document.getElementById('input');
+      userInput.value += num
+    }
+
+    const equalsBtn = () =>{
+      input.value = eval(input.value);
+    }
+  </script>
 </body>
 </html>
